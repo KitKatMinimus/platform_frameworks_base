@@ -4518,14 +4518,4 @@
     <!-- PIN entry dialog tells the user to not enter a PIN for a while. [CHAR LIMIT=none] -->
     <string name="restr_pin_try_later">Try again later</string>
 
-    <!-- Cling help message when hiding the navigation bar entering immersive mode [CHAR LIMIT=none] -->
-    <string name="immersive_mode_confirmation" msgid="8554991488096662508">Swipe down from the top to exit full screen.</string>
-
-    <!-- label for item that toggles global immersive mode -->
-    <string name="global_actions_toggle_global_immersive_mode">Immersive mode</string>
-    <!-- status message in phone options dialog for when expand desktop mode is on -->
-    <string name="global_actions_global_immersive_mode_on_status">Enabled</string>
-    <!-- status message in phone options dialog for when expand desktop mode is off -->
-    <string name="global_actions_global_immersive_mode_off_status">Disabled</string>
-
 </resources>
