@@ -22,12 +22,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.media.AudioManager;
 import android.media.AudioService;
@@ -230,12 +230,10 @@ public class VolumePanel extends Handler implements OnSeekBarChangeListener, Vie
     private ContentObserver mSettingsObserver = new ContentObserver(this) {
         @Override
         public void onChange(boolean selfChange) {
-            mVolumeLinkNotification = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.VOLUME_LINK_NOTIFICATION, 1,
-                    UserHandle.USER_CURRENT) == 1;
-            int overlayStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.MODE_VOLUME_OVERLAY, VOLUME_OVERLAY_EXPANDABLE,
-                    UserHandle.USER_CURRENT);
+            mVolumeLinkNotification = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.VOLUME_LINK_NOTIFICATION, 1) == 1;
+            final int overlayStyle = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.MODE_VOLUME_OVERLAY, VOLUME_OVERLAY_EXPANDABLE);
             changeOverlayStyle(overlayStyle);
         }
     };
@@ -360,10 +358,12 @@ public class VolumePanel extends Handler implements OnSeekBarChangeListener, Vie
                 Settings.System.getUriFor(Settings.System.MODE_VOLUME_OVERLAY), false,
                 mSettingsObserver);
 
+        // This is new with 4.2 it seems
         boolean masterVolumeKeySounds = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_useVolumeKeySounds);
 
         mPlayMasterStreamTones = useMasterVolume && masterVolumeKeySounds;
+        // End this is new
 
         mMoreButton.setOnClickListener(this);
         listenToRingerMode();
