@@ -21,14 +21,11 @@
     <!-- Long-press back kill application -->
     <string name="app_killed_message">Application killed</string>
 
-    <!-- Cling help message when hiding the navigation bar entering immersive mode [CHAR LIMIT=none] -->
-    <string name="immersive_mode_confirmation" msgid="8554991488096662508">Swipe down from the top to exit full screen.</string>
-
-    <!-- label for item that toggles global immersive mode -->
-    <string name="global_actions_toggle_global_immersive_mode">Immersive mode</string>
+    <!-- label for item that toggles expand desktop mode -->
+    <string name="global_actions_toggle_expanded_desktop_mode">Expanded desktop</string>
     <!-- status message in phone options dialog for when expand desktop mode is on -->
-    <string name="global_actions_global_immersive_mode_on_status">Enabled</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">Enabled</string>
     <!-- status message in phone options dialog for when expand desktop mode is off -->
-    <string name="global_actions_global_immersive_mode_off_status">Disabled</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">Disabled</string>
 
 </resources>

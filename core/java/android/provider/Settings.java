@@ -2792,22 +2792,22 @@ public final class Settings {
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
 
         /**
-         * Global immersive mode on/off state
+         * Expanded desktop on/off state
          * @hide
          */
-        public static final String GLOBAL_IMMERSIVE_MODE_STATE = "global_immersive_mode_state";
+        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
 
         /**
-         * Global immersive mode style (with status bar or without status bar)
+         * Expanded desktop style (with status bar or without status bar)
          * @hide
          */
-        public static final String GLOBAL_IMMERSIVE_MODE_STYLE = "global_immersive_mode_style";
+        public static final String EXPANDED_DESKTOP_STYLE = "expanded_desktop_style";
 
-        /**
+       /**
          * Whether power menu expanded desktop is enabled
          * @hide
          */
-        public static final String POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED = "power_menu_global_immersive_mode_enabled";
+        public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
 
          /**
          * Defines the screen-off animation to display
