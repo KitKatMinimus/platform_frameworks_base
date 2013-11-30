@@ -104,7 +104,7 @@ import com.android.internal.policy.impl.keyguard.KeyguardServiceDelegate;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.PointerLocationView;
-import com.android.internal.util.purity.DevUtils;
+import com.android.internal.util.cm.DevUtils;
 
 import java.io.File;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package com.android.internal.util.purity;
+package com.android.internal.util.cm;
 
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;

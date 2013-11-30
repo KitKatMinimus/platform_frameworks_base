@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2013 Purity Project
+* Copyright (C) 2013 CyanogenMOD Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.android.internal.util.purity;
+package com.android.internal.util.cm;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
