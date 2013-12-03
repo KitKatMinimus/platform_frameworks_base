@@ -18,10 +18,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- QS Battery Tile -->
-    <string name="quick_settings_battery_charging">Charging</string>
-    <string name="quick_settings_battery_discharging">Discharging</string>
-
     <!-- Expanded desktop strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
     <string name="quick_settings_expanded_desktop">Expanded</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>
