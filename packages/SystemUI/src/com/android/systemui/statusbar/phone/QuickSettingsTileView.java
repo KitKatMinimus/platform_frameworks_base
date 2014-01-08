@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
- * This code has been modified. Portions copyright (C) 2013, ParanoidAndroid Project.
+ * This code has been modified. Portions copyright (C) 2014 ParanoidAndroid Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,8 +68,7 @@ class QuickSettingsTileView extends FrameLayout {
         mColSpan = 1;
         mRowSpan = 1;
 
-        QuickSettingsTouchListener touchListener
-                = new QuickSettingsTouchListener();
+        QuickSettingsTouchListener touchListener = new QuickSettingsTouchListener();
         QuickSettingsDragListener dragListener = new QuickSettingsDragListener();
         setOnTouchListener(touchListener);
         setOnDragListener(dragListener);
@@ -129,7 +128,7 @@ class QuickSettingsTileView extends FrameLayout {
         }
     }
 
-    void setEditMode(boolean enabled) {
+    public void setEditMode(boolean enabled) {
         mEditMode = enabled;
         mVisible = getVisibility() == View.VISIBLE
                 && (getScaleY() >= ENABLED || getScaleX() >= ENABLED);
@@ -148,8 +147,8 @@ class QuickSettingsTileView extends FrameLayout {
         } else {
             boolean temporaryEditMode = isTemporary() && enabled;
             animate().scaleX(NON_EDITABLE).scaleY(NON_EDITABLE).setListener(null);
-            setOnClickListener(temporaryEditMode? null : mOnClickListener);
-            setOnLongClickListener(temporaryEditMode? null : mOnLongClickListener);
+            setOnClickListener(temporaryEditMode ? null : mOnClickListener);
+            setOnLongClickListener(temporaryEditMode ? null : mOnLongClickListener);
             if(!mVisible) { // Item has been disabled
                 setVisibility(View.GONE);
             }
@@ -217,5 +216,74 @@ class QuickSettingsTileView extends FrameLayout {
             }
         }
         super.setVisibility(vis);
+    }
+
+    public void setOnPrepareListener(OnPrepareListener listener) {
+        if (mOnPrepareListener != listener) {
+            mOnPrepareListener = listener;
+            mPrepared = false;
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    updatePreparedState();
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        updatePreparedState();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        updatePreparedState();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        updatePreparedState();
+    }
+
+    private void updatePreparedState() {
+        if (mOnPrepareListener != null) {
+            if (isParentVisible()) {
+                if (!mPrepared) {
+                    mPrepared = true;
+                    mOnPrepareListener.onPrepare();
+                }
+            } else if (mPrepared) {
+                mPrepared = false;
+                mOnPrepareListener.onUnprepare();
+            }
+        }
+    }
+
+    private boolean isParentVisible() {
+        if (!isAttachedToWindow()) {
+            return false;
+        }
+        for (ViewParent current = getParent(); current instanceof View;
+                current = current.getParent()) {
+            View view = (View)current;
+            if (view.getVisibility() != VISIBLE) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * Called when the view's parent becomes visible or invisible to provide
+     * an opportunity for the client to provide new content.
+     */
+    public interface OnPrepareListener {
+        void onPrepare();
+        void onUnprepare();
     }
 }
