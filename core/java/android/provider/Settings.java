@@ -2486,10 +2486,10 @@ public final class Settings {
         public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
 
         /**
-         * Quick settings quick pull down option
+         * Setting to show determine if AOSP dialer is used
          * @hide
          */
-        public static final String QUICK_SETTINGS_QUICK_PULL_DOWN = "quick_settings_quick_pull_down";
+        public static final String AOSP_DIALER = "aosp_dialer";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
