@@ -16,7 +16,7 @@
 */
 -->
 <resources>
-  <!--From power menu-->
+  <!-- From power menu -->
   <java-symbol type="array" name="shutdown_reboot_options" />
   <java-symbol type="array" name="shutdown_reboot_actions" />
   <java-symbol type="array" name="shutdown_reboot_icons" />
@@ -29,14 +29,4 @@
   <java-symbol type="string" name="global_action_screenshot" />
   <java-symbol type="string" name="reboot_confirm" />
   <java-symbol type="string" name="reboot_progress" />
-
-  <!--Notification led-->
-  <java-symbol type="array" name="notification_light_package_mapping" />
-
-  <!--Setting confirmation dialog-->
-  <java-symbol type="id" name="setting_confirmation_dialog_visual_hint" />
-  <java-symbol type="layout" name="setting_confirmation_dialog" />
-  <java-symbol type="string" name="setting_confirmation_ask_me_later" />
-  <java-symbol type="string" name="setting_confirmation_yes" />
-  <java-symbol type="string" name="setting_confirmation_no" />
 </resources>
