@@ -214,8 +214,6 @@ public class PieControlPanel extends FrameLayout implements OnNavButtonPressedLi
             injectKeyDelayed(KeyEvent.KEYCODE_MENU);
         } else if (buttonName.equals(PieController.RECENT_BUTTON)) {
             mStatusBar.toggleRecentApps();
-        } else if (buttonName.equals(PieController.CLEAR_ALL_BUTTON)) {
-            mStatusBar.clearRecentApps();
         }
     }
 

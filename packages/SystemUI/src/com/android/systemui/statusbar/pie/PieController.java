@@ -36,7 +36,6 @@ import android.widget.ImageView.ScaleType;
 
 import com.android.systemui.R;
 import com.android.systemui.recent.RecentsActivity;
-import com.android.systemui.recent.NavigationCallback;
 import com.android.systemui.statusbar.BaseStatusBar;
 
 import static com.android.systemui.statusbar.phone.QuickSettingsModel.IMMERSIVE_MODE_OFF;
@@ -49,7 +48,7 @@ import static com.android.systemui.statusbar.phone.QuickSettingsModel.IMMERSIVE_
  * Sets and controls the pie menu and associated pie items
  * Singleton must be intilized.
  */
-public class PieController implements OnClickListener, NavigationCallback {
+public class PieController implements OnClickListener {
 
     public static final String BACK_BUTTON = "##back##";
     public static final String HOME_BUTTON = "##home##";
@@ -105,7 +104,6 @@ public class PieController implements OnClickListener, NavigationCallback {
         mPieHelper.init(mContext, mBar);
         mItemSize = (int) context.getResources().getDimension(R.dimen.pie_item_size);
         mKeyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        RecentsActivity.addNavigationCallback(this);
     }
 
     public static PieController getInstance() {
@@ -242,22 +240,6 @@ public class PieController implements OnClickListener, NavigationCallback {
         mPie.addItem(mBack);
     }
 
-    @Override
-    public void setNavigationIconHints(int button, int hints, boolean force) {
-        if (mRecent == null) return;
-        mNavigationIconHints = hints;
-
-        if (button == NavigationCallback.NAVBAR_RECENTS_HINT) {
-            boolean alt = (0 != (hints &
-                    StatusBarManager.NAVIGATION_HINT_RECENT_ALT)
-                            && !mKeyguardManager.isKeyguardLocked());
-            mRecent.setIcon(alt ? R.drawable.ic_sysbar_recent_clear
-                    : R.drawable.ic_sysbar_recent);
-            mRecent.setName(alt ? CLEAR_ALL_BUTTON : RECENT_BUTTON);
-        }
-    }
-
-    @Override
     public int getNavigationIconHints() {
         return mNavigationIconHints;
     }

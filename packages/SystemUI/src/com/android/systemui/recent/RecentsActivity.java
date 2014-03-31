@@ -18,6 +18,7 @@ package com.android.systemui.recent;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.StatusBarManager;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -47,11 +48,8 @@ public class RecentsActivity extends Activity {
 
     private RecentsPanelView mRecentsPanel;
 
-    private static List<NavigationCallback> mNavigationCallbacks;
-    private static RecentsPanelView mRecentsPanel;
     private static boolean mShowing;
     private IntentFilter mIntentFilter;
-    private boolean mShowing;
     private boolean mForeground;
 
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
@@ -120,17 +118,6 @@ public class RecentsActivity extends Activity {
 
     public static boolean forceOpaqueBackground(Context context) {
         return WallpaperManager.getInstance(context).getWallpaperInfo() != null;
-    }
-
-    public void setRecentHints(boolean show) {
-        for(NavigationCallback callback : mNavigationCallbacks) {
-            // Check if we need to enable alternate drawable for recent apps key
-            if(callback == null) return; // Multiuser is not allowed
-            int navigationHints = callback.getNavigationIconHints();
-            callback.setNavigationIconHints(NavigationBarView.NAVBAR_RECENTS_HINT,
-                    show ? (navigationHints | StatusBarManager.NAVIGATION_HINT_RECENT_ALT)
-                            : (navigationHints & ~StatusBarManager.NAVIGATION_HINT_RECENT_ALT), true);
-        }
     }
 
     @Override
@@ -255,16 +242,6 @@ public class RecentsActivity extends Activity {
 
     boolean isForeground() {
         return mForeground;
-    }
-
-    public static void addNavigationCallback(NavigationCallback callback) {
-        if(mNavigationCallbacks == null)
-                mNavigationCallbacks= new ArrayList<NavigationCallback>();
-        mNavigationCallbacks.add(callback);
-    }
-
-    public static int getTasks() {
-        return mRecentsPanel.getTasks();
     }
 
     public static boolean isActivityShowing() {
